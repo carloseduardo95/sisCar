@@ -5,6 +5,9 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'SisCar',
+    'language' => 'pt-BR',
+    'timezone' => 'America/Sao_Paulo',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -37,8 +40,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'seuemail@gmail.com',
-                'password' => 'suasenha',
+                'username' => 'email@gmail.com',
+                'password' => 'senha',
                 'port' => '587',
                 'encryption' => 'tls',
             ],
@@ -49,6 +52,30 @@ $config = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+        'formatter' => [
+            'class'			=> 'yii\i18n\Formatter',
+			'dateFormat'		=> 'dd/MM/yyyy',
+			'datetimeFormat'	=> 'php:d/m/Y H:i:s',
+			'timeFormat'		=> 'php:H:i:s',
+			'decimalSeparator'	=> ',',
+			'thousandSeparator'	=> '.',
+			'currencyCode'		=> 'R$',
+			'locale'		=> 'pt-BR',
+			'defaultTimeZone'	=> 'America/Sao_Paulo',
+        ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    // 'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
                 ],
             ],
         ],

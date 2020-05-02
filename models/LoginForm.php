@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use Yii;
@@ -71,6 +72,7 @@ class LoginForm extends Model
     {
         if ($this->_user === null) {
             $this->_user = User::findByUsername($this->username);
+        //  $this->_user = User::findByEmail($this->username);
         }
 
         return $this->_user;

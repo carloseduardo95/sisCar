@@ -1,4 +1,5 @@
 <?php
+
 namespace app\controllers;
 
 use app\models\ResendVerificationEmailForm;
@@ -28,15 +29,17 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'except' => [
+                        'login', 
+                        'signup', 
+                        'request-password-reset', 
+                        'reset-password', 
+                        'resend-verification-email',
+                        'verify-email',
+                ],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
+                        'actions' => [],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -133,16 +136,6 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 
     /**
